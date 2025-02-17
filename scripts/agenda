@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Agenda folder location
+folder=$HOME/Documents/agenda
+
+year_folder="${folder}"/$(date +%Y)
+month_folder="${year_folder}"/$(date +%m)
+current_day_file="${month_folder}"/$(date +%d-%m-%Y-%a)
+
+# Initialize root folder
+if [ ! -d "$folder" ]; then
+	mkdir -p "$folder"
+fi
+
+# Create year folder
+if [ ! -d "$year_folder" ]; then
+	mkdir -p "$year_folder"
+fi
+
+# Create month folder
+if [ ! -d "$month_folder" ]; then
+	echo "Missing $month_folder"
+	mkdir -p "$month_folder"
+fi
+
+# Welcome message on file init
+if [ ! -f "$current_day_file" ]; then
+	echo -e "TODO LIST:\n\n================ NOTES ================\n" > "$current_day_file"
+fi
+
+vim "$current_day_file"
+
+exit 0
