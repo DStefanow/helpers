@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Default counter or get characters count if it is deffined 
+if [ -z "${1}" ]; then
+	CH_COUNT=18
+else
+	CH_COUNT="${1}"
+fi
+
+LC_ALL=C tr -dc a-zA-Z0-9 </dev/urandom | head -c "${CH_COUNT}" ; echo
+
+exit 0
